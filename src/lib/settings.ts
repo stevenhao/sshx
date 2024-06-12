@@ -6,6 +6,7 @@ export type Settings = {
   name: string;
   theme: ThemeName;
   scrollback: number;
+  bibimbap: boolean; // New preference for bibimbap
 };
 
 const storedSettings = persisted<Partial<Settings>>("sshx-settings-store", {});
@@ -27,10 +28,13 @@ export const settings: Readable<Settings> = derived(
       scrollback = 5000;
     }
 
+    const bibimbap = $storedSettings.bibimbap ?? false; // Default to false if not set
+
     return {
       name,
       theme,
       scrollback,
+      bibimbap,
     };
   },
 );
