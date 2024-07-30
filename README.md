@@ -1,112 +1,56 @@
-# sshx
+# Resume Builder App
 
-A secure web-based, collaborative terminal.
+A web-based application for creating professional resumes with real-time PDF preview.
 
-![](https://i.imgur.com/Q3qKAHW.png)
+## Features
 
-**Features:**
-
-- Run a single command to share your terminal with anyone.
-- Resize, move windows, and freely zoom and pan on an infinite canvas.
-- See other people's cursors moving in real time.
-- Connect to the nearest server in a globally distributed mesh.
-- End-to-end encryption with Argon2 and AES.
-- Automatic reconnection and real-time latency estimates.
-- Predictive echo for faster local editing (à la Mosh).
-
-Visit [sshx.io](https://sshx.io) to learn more.
+- User-friendly form interface for inputting resume details
+- Real-time PDF preview as you type
+- Two-column layout for efficient use of space
+- Supports multiple work experiences and education entries
+- Customizable skills, certifications, and languages sections
 
 ## Installation
 
-Just run this command to get the `sshx` binary for your platform.
+To run this project locally, follow these steps:
 
-```shell
-curl -sSf https://sshx.io/get | sh
-```
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/resume-builder-app.git
+   cd resume-builder-app
+   ```
 
-Supports Linux and MacOS on x86_64 and ARM64 architectures, as well as embedded
-ARMv6 and ARMv7-A systems. The precompiled Linux binaries are statically linked.
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-If you just want to try it out without installing, use:
+3. Start the development server:
+   ```
+   npm start
+   ```
 
-```shell
-curl -sSf https://sshx.io/get | sh -s run
-```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-Inspect the script for additional options.
+## Usage
 
-### CI/CD
+1. Fill out the form fields with your personal information, work experience, education, skills, certifications, and languages.
+2. As you type, the PDF preview on the right side of the screen will update in real-time.
+3. Use the "Add" buttons to include multiple entries for work experience, education, skills, certifications, and languages.
+4. Use the "Remove" buttons (trash can icons) to delete unwanted entries.
 
-You can run sshx in continuous integration workflows to help debug tricky
-issues, like in GitHub Actions.
+## Dependencies
 
-```yaml
-name: CI
-on: push
+This project uses the following main dependencies:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+- React
+- Chakra UI for styling and components
+- @react-pdf/renderer for generating the PDF preview
 
-      # ... other steps ...
+## Contributing
 
-      - run: curl -sSf https://sshx.io/get | sh -s run
-      #      ^
-      #      └ This will open a remote terminal session and print the URL. It
-      #        should take under a second.
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-We don't have a prepackaged action because it's just a single command. It works
-anywhere: GitLab CI, CircleCI, Buildkite, CI on your Raspberry Pi, etc.
+## License
 
-Be careful adding this to a public GitHub repository, as any user can view the
-logs of a CI job while it is running.
-
-## Development
-
-Here's how to work on the project, if you want to contribute.
-
-### Building from source
-
-To build the latest version of the client from source, clone this repository and
-run, with [Rust](https://rust-lang.com/) installed:
-
-```shell
-cargo install --path crates/sshx
-```
-
-This will compile the `sshx` binary and place it in your `~/.cargo/bin` folder.
-
-### Workflow
-
-First, start service containers for development.
-
-```shell
-docker compose up -d
-```
-
-Install [Rust 1.70+](https://www.rust-lang.org/),
-[Node v18](https://nodejs.org/), [NPM v9](https://www.npmjs.com/), and
-[mprocs](https://github.com/pvolok/mprocs). Then, run
-
-```shell
-npm install
-mprocs
-```
-
-This will compile and start the server, an instance of the client, and the web
-frontend in parallel on your machine.
-
-## Deployment
-
-I host the application servers on [Fly.io](https://fly.io/) and with
-[Redis Cloud](https://redis.com/).
-
-Self-hosted deployments are not supported at the moment. If you want to deploy
-sshx, you'll need to properly implement HTTP/TCP reverse proxies, gRPC
-forwarding, TLS termination, private mesh networking, and graceful shutdown.
-
-Please do not run the development commands in a public setting, as this is
-insecure.
+This project is open source and available under the [MIT License](LICENSE).
